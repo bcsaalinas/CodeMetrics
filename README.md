@@ -2,7 +2,7 @@ Subject: README.md for CodeMetrics
 
 # CodeMetrics 📊⌨️
 
-A personal coding analytics dashboard powered by the WakaTime API — built with **Node.js, Express, EJS, Tailwind CSS, and Axios**.
+A personal coding analytics dashboard powered by the WakaTime API — built with **Node.js, Express, EJS, Tailwind CSS, and Axios, (This is be meant to be migrated to other frameworks for better stability)**.
 
 > This project turns WakaTime data into a clean, modern dashboard you can use as a “developer activity + productivity” snapshot — perfect as a portfolio piece and a real-world REST API integration demo.
 
