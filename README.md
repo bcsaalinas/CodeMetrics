@@ -137,7 +137,7 @@ This is primarily a personal portfolio project, but issues and suggestions are w
 
 ## 📄 License
 
-MIT (or your preferred license)
+MIT 
 
 ---
 
