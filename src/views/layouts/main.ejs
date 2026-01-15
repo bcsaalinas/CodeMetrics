@@ -1,28 +1,16 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Code Metrics</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/styles.css" />
   </head>
-  <body>
-    <div class="hero-container">
-      <h1>Code Metrics</h1>
-      <p>
-        A personal tracker of the time spent coding, languages, operating systems, etc, enjoy!
-        (data fetched from wakatimeAPI)
-      </p>
-      <div class="info-container">
-        <h2><%= timeText %> Coding!</h2>
-        <h2> Daily average: <%= dailyAverage  %></h2>
-      </div>
-      <div class="languages-container">
-        <figure>
-          <embed src="https://wakatime.com/share/@8f29a615-6b8d-4db9-9efd-a3f4296f2ec7/9ee22b81-ece7-49c7-8d97-756279668836.svg"></embed>
-        </figure>
-      </div>
-
-
-    </div>
+  <body class="bg-slate-900">
+    <%- body %>
   </body>
 </html>
+
