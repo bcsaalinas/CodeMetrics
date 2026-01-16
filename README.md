@@ -10,7 +10,7 @@ A personal coding analytics dashboard powered by the WakaTime API — built with
 
 ## 🖼 Preview
 
-![Dashboard Overview](docs/images/dashboard.png)
+![Dashboard Overview](docs/Dashboard.png)
 
 ## 🚀 Features
 
