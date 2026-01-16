@@ -1,35 +1,25 @@
-Subject: README.md for CodeMetrics
-
 # CodeMetrics 📊⌨️
 
-A personal coding analytics dashboard powered by the WakaTime API — built with **Node.js, Express, EJS, Tailwind CSS, and Axios, (This is meant to be migrated to other frameworks for better stability)**.
+A personal coding analytics dashboard powered by the WakaTime API — built with **Node.js, Express, EJS, Tailwind CSS, and Axios**.
 
 > This project turns WakaTime data into a clean, modern dashboard you can use as a “developer activity + productivity” snapshot — perfect as a portfolio piece and a real-world REST API integration demo.
 
 ---
 
-## 🚀 Features (current + planned)
+🔗 **Live Demo:** https://codemetrics.onrender.com
 
-### ✅ Current
+## 🖼 Preview
+
+![Dashboard Overview](docs/images/dashboard.png)
+
+## 🚀 Features
 
 - Server-side integration with the **WakaTime REST API**
 - Secure API key handling using **environment variables** (`.env`)
-- EJS templating + reusable partials
+- EJS templating + reusable layouts
 - Tailwind-based modern UI foundation
-
-### 🧠 Planned
-
-- Dashboard cards:
-
-  - Total coding time (last 7 days)
-  - Top languages
-  - Top projects
-  - Daily activity breakdown
-
-- Charts (Chart.js)
-- “Shareable” public view (read-only)
-- Caching layer (to reduce API calls + improve performance)
-- Error states + loading skeletons for a polished UX
+- Dashboard cards for **total coding time** and **daily average**
+- Language breakdown embed (WakaTime share)
 
 ---
 
@@ -50,7 +40,7 @@ This app uses a **WakaTime API Key**, which must **never** be committed to GitHu
 ✅ Do:
 
 - store it in a local `.env` file
-- use `process.env.WAKATIME_API_KEY` on the server only
+- use `process.env.API_KEY` on the server only
 
 ❌ Don’t:
 
@@ -79,8 +69,9 @@ npm install
 Create a file named `.env` in the project root:
 
 ```env
-WAKATIME_API_KEY=your_api_key_here
+API_KEY=your_api_key_here
 PORT=3000
+API_URL=https://wakatime.com/api/v1
 ```
 
 > Get your API key from: WakaTime → Settings → API Key
@@ -88,16 +79,28 @@ PORT=3000
 ### 4) Run the app
 
 ```bash
-npm run dev
+node server.js
 ```
 
 Then open:
 
 - [http://localhost:3000](http://localhost:3000)
 
+### 5) Build Tailwind CSS (optional)
+
+```bash
+npm run build:css
+```
+
+For live updates during development:
+
+```bash
+npm run watch:css
+```
+
 ---
 
-## 🗂 Project Structure (planned)
+## 🗂 Project Structure
 
 ```txt
 src/
@@ -105,24 +108,23 @@ src/
   routes/
   controllers/
   services/
-    wakatime.js
+    wakatime.service.js
   views/
     layouts/
     pages/
-    partials/
-public/
   styles/
-  js/
+    input.css
+public/
+  css/
+    styles.css
 ```
 
 ---
 
 ## 🗺 Roadmap
 
-- [ ] Tailwind pipeline (build/watch)
-- [ ] WakaTime service module (`services/wakatime.js`)
-- [ ] `/dashboard` route rendering real API data
 - [ ] Charts + UI polish
+- [ ] Additional metrics (top languages/projects, daily breakdowns)
 - [ ] Shareable public view
 - [ ] Caching + production hardening
 - [ ] Deploy (Render/Railway/Fly.io)
@@ -137,7 +139,7 @@ This is primarily a personal portfolio project, but issues and suggestions are w
 
 ## 📄 License
 
-MIT 
+MIT
 
 ---
 
