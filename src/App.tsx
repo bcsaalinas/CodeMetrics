@@ -34,7 +34,7 @@ export default function App() {
   if (!data) return null;
 
   return (
-    <div className="min-h-screen bg-dark-500 text-white">
+    <div className="min-h-screen bg-dark-500 text-white grain-overlay">
       <Navbar />
       <Hero />
       <StatsSection data={data} />

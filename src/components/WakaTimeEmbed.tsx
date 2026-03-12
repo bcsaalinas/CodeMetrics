@@ -18,10 +18,10 @@ export default function WakaTimeEmbed() {
     if (headerRef.current) {
       gsap.fromTo(
         headerRef.current,
-        { y: 40, opacity: 0 },
+        { y: 30, opacity: 0 },
         {
-          y: 0, opacity: 1, duration: 0.8, ease: 'power3.out',
-          scrollTrigger: { trigger: sectionRef.current, start: 'top 80%' },
+          y: 0, opacity: 1, duration: 0.7, ease: 'power3.out',
+          scrollTrigger: { trigger: sectionRef.current, start: 'top 82%' },
         }
       );
     }
@@ -29,9 +29,9 @@ export default function WakaTimeEmbed() {
     if (embedRef.current) {
       gsap.fromTo(
         embedRef.current,
-        { y: 60, opacity: 0, scale: 0.98 },
+        { y: 40, opacity: 0 },
         {
-          y: 0, opacity: 1, scale: 1, duration: 1, ease: 'power3.out',
+          y: 0, opacity: 1, duration: 0.8, ease: 'power3.out',
           scrollTrigger: { trigger: sectionRef.current, start: 'top 75%' },
         }
       );
@@ -41,23 +41,25 @@ export default function WakaTimeEmbed() {
   if (!userId || !chartId) return null;
 
   return (
-    <section ref={sectionRef} className="px-6 pb-20">
+    <section ref={sectionRef} className="px-6 pb-24">
       <div className="max-w-5xl mx-auto">
-        <div ref={headerRef} className="flex items-center gap-4 mb-10">
-          <div className="w-1 h-8 rounded-full bg-gradient-to-b from-accent-orange to-accent-pink" />
-          <h2 className="text-3xl md:text-4xl font-bold text-white tracking-tight">
-            All-Time Languages
-          </h2>
-          <span className="text-dark-300 text-sm font-mono ml-auto">
+        <div ref={headerRef} className="mb-8">
+          <div className="flex items-center gap-3 mb-1">
+            <div className="section-accent bg-gradient-to-r from-accent-orange to-accent-pink" />
+            <h2 className="text-2xl md:text-3xl font-bold text-white tracking-tight">
+              All-Time Languages
+            </h2>
+          </div>
+          <p className="text-dark-300 text-xs font-mono tracking-wide ml-11">
             lifetime
-          </span>
+          </p>
         </div>
 
         <div
           ref={embedRef}
-          className="bg-white/[0.02] backdrop-blur-sm border border-white/[0.06] rounded-2xl p-6 md:p-8"
+          className="card-surface p-5 md:p-7"
         >
-          <div className="w-full overflow-hidden rounded-xl bg-dark-500/50 p-4 flex items-center justify-center min-h-[400px]">
+          <div className="w-full overflow-hidden rounded-xl bg-dark-600/30 p-3 flex items-center justify-center min-h-[400px]">
             <embed
               className="w-full h-[400px] md:h-[500px]"
               src={`https://wakatime.com/share/@${userId}/${chartId}.svg`}

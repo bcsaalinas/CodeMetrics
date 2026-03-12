@@ -1,149 +1,134 @@
-# CodeMetrics 📊⌨️
+# CodeMetrics
 
-A personal coding analytics dashboard powered by the WakaTime API — built with **Node.js, Express, EJS, Tailwind CSS, and Axios**.
+Modern coding analytics dashboard powered by WakaTime, built with React, TypeScript, Vite, Tailwind CSS, GSAP, and an Express production server.
 
-> This project turns WakaTime data into a clean, modern dashboard you can use as a “developer activity + productivity” snapshot — perfect as a portfolio piece and a real-world REST API integration demo.
+## Live Demo
 
----
+https://codemetrics.onrender.com
 
-🔗 **Live Demo:** https://codemetrics.onrender.com
+## What It Does
 
-## 🖼 Preview
+CodeMetrics shows your coding activity in a clean, animated dashboard using data from the WakaTime API.
 
-![Dashboard Overview](docs/images/Dashboard.png)
+- Displays total coding time and daily average
+- Builds a top-language breakdown for the current month
+- Visualizes daily activity as a bar graph
+- Embeds your public WakaTime all-time language chart
+- Includes loading and error states for API failures
 
-## 🚀 Features
+## Tech Stack
 
-- Server-side integration with the **WakaTime REST API**
-- Secure API key handling using **environment variables** (`.env`)
-- EJS templating + reusable layouts
-- Tailwind-based modern UI foundation
-- Dashboard cards for **total coding time** and **daily average**
-- Language breakdown embed (WakaTime share)
+- React 19 + TypeScript
+- Vite 7
+- Tailwind CSS
+- GSAP + ScrollTrigger animations
+- Express 5 (production server + API proxy)
 
----
+## Project Structure
 
-## 🧱 Tech Stack
-
-- **Node.js + Express** — backend server + routes
-- **EJS** — server-rendered views
-- **Tailwind CSS** — UI styling
-- **Axios** — HTTP client for API calls
-- **WakaTime API** — coding activity data
-
----
-
-## 🔐 Security Notes (important)
-
-This app uses a **WakaTime API Key**, which must **never** be committed to GitHub.
-
-✅ Do:
-
-- store it in a local `.env` file
-- use `process.env.API_KEY` on the server only
-
-❌ Don’t:
-
-- paste keys into client-side code
-- commit `.env`
-
----
-
-## 📦 Getting Started
-
-### 1) Clone the repo
-
-```bash
-git clone https://github.com/<your-username>/codemetrics.git
-cd codemetrics
+```txt
+.
+|- server.js
+|- vite.config.ts
+|- src/
+|  |- App.tsx
+|  |- components/
+|  |- hooks/
+|  |- services/
+|  |- types/
+|  `- index.css
+`- public/
 ```
 
-### 2) Install dependencies
+## Requirements
+
+- Node.js 18+
+- npm
+- WakaTime account
+
+## Make This Project Your Own
+
+To use your own WakaTime data, complete these steps:
+
+1. Sign in to WakaTime.
+2. Connect your IDE/editor to WakaTime using the official plugin for your editor.
+3. Open WakaTime settings and copy your API key.
+4. Create a `.env` file in the project root.
+5. Add your environment variables.
+
+### Environment Variables
+
+Create `.env` in the root of the project:
+
+```env
+# Required for local development (Vite dev proxy)
+VITE_WAKATIME_API_KEY=waka_your_api_key_here
+
+# Optional: used by the "All-Time Languages" embed component
+VITE_WAKATIME_USER_ID=your_wakatime_user_id
+VITE_WAKATIME_CHART_ID=your_wakatime_chart_id
+
+# Required for production/Express server
+WAKATIME_API_KEY=waka_your_api_key_here
+
+# Optional server port (default: 10000)
+PORT=10000
+```
+
+Notes:
+
+- `VITE_WAKATIME_API_KEY` is required to run the app locally with `npm run dev`.
+- `WAKATIME_API_KEY` is required when running the Express server in production mode (`npm run start`).
+- Never commit your real API keys.
+
+## Getting Started
+
+1. Install dependencies:
 
 ```bash
 npm install
 ```
 
-### 3) Create a `.env` file
-
-Create a file named `.env` in the project root:
-
-```env
-API_KEY=your_api_key_here
-PORT=3000
-API_URL=https://wakatime.com/api/v1
-```
-
-> Get your API key from: WakaTime → Settings → API Key
-
-### 4) Run the app
+2. Run development server:
 
 ```bash
-node server.js
+npm run dev
 ```
 
-Then open:
-
-- [http://localhost:3000](http://localhost:3000)
-
-### 5) Build Tailwind CSS (optional)
-
-```bash
-npm run build:css
-```
-
-For live updates during development:
-
-```bash
-npm run watch:css
-```
-
----
-
-## 🗂 Project Structure
+3. Open the app:
 
 ```txt
-src/
-  app.js
-  routes/
-  controllers/
-  services/
-    wakatime.service.js
-  views/
-    layouts/
-    pages/
-  styles/
-    input.css
-public/
-  css/
-    styles.css
+http://localhost:5173
 ```
 
----
+## Production Build
 
-## 🗺 Roadmap
+Build the frontend:
 
-- [ ] Charts + UI polish
-- [ ] Additional metrics (top languages/projects, daily breakdowns)
-- [ ] Shareable public view
-- [ ] Caching + production hardening
-- [ ] Deploy (Render/Railway/Fly.io)
+```bash
+npm run build
+```
 
----
+Run the production server (serves `dist/` and proxies `/api/wakatime`):
 
-## 🤝 Contributing
+```bash
+npm run start
+```
 
-This is primarily a personal portfolio project, but issues and suggestions are welcome.
+## Available Scripts
 
----
+- `npm run dev` - start Vite dev server
+- `npm run build` - type-check and build production bundle
+- `npm run preview` - preview built frontend with Vite
+- `npm run start` - run Express production server
+- `npm run lint` - run ESLint
 
-## 📄 License
+## Security
 
-MIT
+- Keep API keys in `.env` only
+- Do not expose secrets in source code
+- Do not commit `.env` to GitHub
 
----
+## License
 
-## ✨ Author
-
-Alberto Cisneros Salinas
-(Computer Science Student — Universidad Panamericana)
+ISC
