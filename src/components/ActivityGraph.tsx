@@ -14,6 +14,8 @@ export default function ActivityGraph({ dailyData }: ActivityGraphProps) {
   const graphRef = useRef<HTMLDivElement>(null);
 
   const maxSeconds = Math.max(...dailyData.map((d) => d.seconds), 1);
+  const minSeconds = Math.min(...dailyData.map((d) => d.seconds), 0);
+  const spreadSeconds = Math.max(maxSeconds - minSeconds, 1);
   const maxHours = Math.ceil(maxSeconds / 3600);
   const gridLines = Array.from({ length: 4 }, (_, i) => ((i + 1) / 4) * maxHours);
 
@@ -105,13 +107,14 @@ export default function ActivityGraph({ dailyData }: ActivityGraphProps) {
                 className="flex items-end gap-[2px] md:gap-1 h-48 md:h-56 relative z-10"
               >
                 {dailyData.map((day) => {
-                  const heightPct = (day.seconds / maxSeconds) * 100;
+                  const normalized = (day.seconds - minSeconds) / spreadSeconds;
+                  const heightPct = day.seconds > 0 ? Math.max(normalized * 100, 4) : 1.5;
                   const intensity = day.seconds / maxSeconds;
 
                   return (
                     <div
                       key={day.date}
-                      className="flex-1 flex flex-col items-center group relative"
+                      className="flex-1 h-full flex flex-col justify-end items-center group relative"
                     >
                       {/* Tooltip */}
                       <div className="absolute -top-14 left-1/2 -translate-x-1/2 bg-dark-700 border border-white/[0.08] rounded-lg px-2.5 py-1.5 text-[11px] text-white font-mono opacity-0 group-hover:opacity-100 transition-all duration-200 scale-95 group-hover:scale-100 whitespace-nowrap pointer-events-none z-20 shadow-xl shadow-black/40">
@@ -120,12 +123,13 @@ export default function ActivityGraph({ dailyData }: ActivityGraphProps) {
                       </div>
                       <div
                         data-activity-bar
-                        className="w-full rounded-sm origin-bottom cursor-pointer transition-all duration-200 group-hover:opacity-100"
+                        className="w-full rounded-sm md:rounded-md origin-bottom cursor-pointer transition-all duration-300 group-hover:opacity-100 group-hover:-translate-y-0.5"
                         style={{
-                          height: `${Math.max(heightPct, 1.5)}%`,
-                          backgroundColor: `rgba(99, 102, 241, ${0.2 + intensity * 0.6})`,
+                          height: `${heightPct}%`,
+                          background: `linear-gradient(180deg, rgba(99, 102, 241, ${0.55 + intensity * 0.35}) 0%, rgba(99, 102, 241, ${0.2 + intensity * 0.45}) 100%)`,
+                          boxShadow: `0 0 ${6 + intensity * 16}px rgba(99, 102, 241, ${0.08 + intensity * 0.2})`,
                           minHeight: '3px',
-                          opacity: 0.85,
+                          opacity: 0.88,
                         }}
                       />
                     </div>
